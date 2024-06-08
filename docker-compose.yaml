@@ -11,6 +11,9 @@ services:
       - ch_network 
     volumes:
       - CH_DB:/var/lib/clickhouse
+    deploy:
+      restart_policy:
+        condition: unless-stopped
 
   my_app:
     build: .
@@ -28,6 +31,8 @@ services:
       resources:
         limits:
           memory: 256m
+      restart_policy:
+        condition: unless-stopped
     depends_on:
       - click
 

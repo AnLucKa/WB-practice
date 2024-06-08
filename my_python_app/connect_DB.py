@@ -5,10 +5,10 @@ import os
 
 def get_param_connect() -> dict:
     param_connect = {}
-    param_connect['host'] = os.getenv('CH_HOST') # 'localhost' 
-    param_connect['user'] = os.getenv('CH_USER') # 'default'
-    param_connect['password'] = os.getenv('CH_PASSWORD') # '' 
-    param_connect['port'] = os.getenv('CH_PORT') # 9000
+    param_connect['host'] = os.getenv('CH_HOST')
+    param_connect['user'] = os.getenv('CH_USER') 
+    param_connect['password'] = os.getenv('CH_PASSWORD')
+    param_connect['port'] = os.getenv('CH_PORT')
 
     return param_connect
 
@@ -30,3 +30,4 @@ def connect_CH() -> Client:
         except Exception as e:
             print(e, "Нет коннекта к КликХаус")
             time.sleep(60)
+            
