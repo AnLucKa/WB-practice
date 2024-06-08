@@ -14,7 +14,7 @@ docker network create ch_network
 
 Запустим клик
 ```command
-docker run --rm -d --name ch -p 8123:8123 --network ch_network --restart=unless-stopped:5 -v CH_DB:/var/lib/clickhouse clickhouse/clickhouse-server
+docker run --rm -d --name ch -p 8123:8123 --network ch_network --restart=unless-stopped -v CH_DB:/var/lib/clickhouse clickhouse/clickhouse-server
 ```
 
 - `--rm` после остановки контейнера удалить контейнер
@@ -22,7 +22,7 @@ docker run --rm -d --name ch -p 8123:8123 --network ch_network --restart=unless-
 - `--name ch` дать имя ch запускаемому контейнеру  
 - `-p 8123:8123` пробросить порт хост:контейнер
 - `--network ch_network` указываем внутреннюю сеть докера, через которую будет конект из другого контейнера
-- `--restart=unless-stopped:5` перезапускать контейнер всегда, кроме случаев, когда он был явно остановлен пользователем
+- `--restart=unless-stopped` перезапускать контейнер всегда, кроме случаев, когда он был явно остановлен пользователем
 - `-v CH_DB:/var/lib/clickhouse` прокидываем тома
  
 ### Запускаем тестовое приложение (симулятор работы сервиса с бд)
@@ -33,7 +33,7 @@ docker build -t my_app .
 
 Запускаем симулятор работы сервиса с бд
 ```command
-docker run --rm -d --name my_app -m 256m  --network ch_network --restart=unless-stopped:5 -v ./my_python_app:/usr/src/app/my_python_app -e CH_HOST=ch -e CH_USER=default -e CH_PASSWORD="" -e CH_PORT=9000  my_app
+docker run --rm -d --name my_app -m 256m  --network ch_network --restart=unless-stopped -v ./my_python_app:/usr/src/app/my_python_app -e CH_HOST=ch -e CH_USER=default -e CH_PASSWORD="" -e CH_PORT=9000  my_app
 ```
 
 - `-m 256m` ограничиваем память контейнеру в 256 мб
