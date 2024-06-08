@@ -40,3 +40,8 @@ docker run --rm -d --name my_app -m 256m  --network ch_network -v ./my_python_ap
 - `-e CH_USER=default`
 - `-e CH_PASSWORD=""`
 - `-e CH_PORT=9000`
+
+## docker-compose
+```command
+docker-compouse up -d
+```
