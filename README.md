@@ -43,5 +43,5 @@ docker run --rm -d --name my_app -m 256m  --network ch_network -v ./my_python_ap
 
 ## docker-compose
 ```command
-docker-compouse up -d
+docker-compose up -d
 ```
