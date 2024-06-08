@@ -2,7 +2,7 @@
 
 ## Локально без docker-compose 
 ### Запускаем clickhouse
-Создадим томаЮ где будет лежать наша ДБ
+Создадим тома где будет лежать наша ДБ
 ```command
 docker volume create CH_DB
 ```
