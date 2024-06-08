@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  click:
+    container_name: ch
+    image: clickhouse/clickhouse-server
+    ports:
+      - 8123:8123
+      - 9000:9000 
+    networks:
+      - ch_network 
+    volumes:
+      - CH_DB:/var/lib/clickhouse
+
+  my_app:
+    build: .
+    container_name: my_app
+    environment:
+      CH_HOST: ch
+      CH_USER: default
+      CH_PASSWORD: ""
+      CH_PORT: 9000
+    volumes:
+      - ./my_python_app:/usr/src/app/my_python_app
+    networks:
+      - ch_network
+    deploy:
+      resources:
+        limits:
+          memory: 256m
+    depends_on:
+      - click
+
+networks:
+  ch_network:
+    driver: bridge
+
+volumes:
+  CH_DB:
